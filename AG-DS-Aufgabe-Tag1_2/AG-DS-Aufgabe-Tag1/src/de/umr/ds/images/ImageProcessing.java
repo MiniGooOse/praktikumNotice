@@ -60,12 +60,13 @@ public class ImageProcessing {
 				grayImg.setRGB(x,y, img[x][y]);
 			}
 		}
+		/**
 		try {
-			File outputfile = new File("saved.png");
+			File outputfile = new File("C:\\Users\\xiao\\Desktop\\vbox_data\\kernel7.png");
 			ImageIO.write(grayImg, "png", outputfile);
 		} catch (IOException e) {
 			System.out.println(e.toString());
-		}
+		}*/
 		return grayImg;
 	}
 
@@ -94,7 +95,31 @@ public class ImageProcessing {
 		} catch (IOException e) {
 			System.out.println(e.toString());
 		}
-		convertToBufferedImage(convertToGrayScaleArray(img));
+		//convertToBufferedImage(convertToGrayScaleArray(img));
+		Kernels kernels = new Kernels();
+		Kernel k1 = kernels.GaussianBlur5x5();
+		Kernel k2 = kernels.BoxBlur3x3();
+		Kernel k3 = kernels.EdgeDetection();
+		Kernel k4 = kernels.Sharpen();
+		Kernel k5 = kernels.Identity();
+		Kernel k6 = kernels.Relief();
+		Kernel k7 = kernels.MotionBlur();
+		int[][] origin = convertToGrayScaleArray(img);
+		int[][] result1 = k1.convolve(origin);
+		//convertToBufferedImage(result1);
+		int[][] result2 = k2.convolve(origin);
+		//convertToBufferedImage(result2);
+		int[][] result3 = k3.convolve(origin);
+		//convertToBufferedImage(result3);
+		int[][] result4 = k4.convolve(origin);
+		//convertToBufferedImage(result4);
+		int[][] result5 = k5.convolve(origin);
+		//convertToBufferedImage(result5);
+		int[][] result6 = k6.convolve(origin);
+		//convertToBufferedImage(result6);
+		int[][] result7 = k7.convolve(origin);
+		convertToBufferedImage(result7);
+
 
 	}
 
