@@ -40,10 +40,50 @@ public class Kernel {
 	 * @return The convolved image
 	 */
 	public int[][] convolve(int[][] img) {
+		final int xSize = img.length;
+		final int ySize = img[1].length;
+		final int newXSize = xSize - width + 1;
+		final int newYSize = ySize - height + 1;
+		int[][] converted = new int[newXSize][newYSize];
 
-		// TODO
-		
-		return null;
+
+
+		System.out.println(String.valueOf(width));
+		System.out.println(String.valueOf(newXSize));
+
+
+		for(int x = 0; x < newXSize; x++){
+			for(int y = 0; y < newYSize; y++){
+				//System.out.println(x + " "+ y);
+				int sum = 0;
+				int[][] block = new int[width][height];
+				int[][] mul = new int[width][height];
+
+				for(int i = 0; i < width; i++){
+					for(int j = 0; j < height; j++){
+						block[i][j] = img[x + i][y + j];
+					}
+				}
+
+				// cal matrix
+				for(int i = 0; i < width; i++){
+					for(int j = 0; j < height; j++){
+						mul[i][j] = (int)(this.k[i][j] * block[i][j]);
+					}
+
+				}
+				// sum
+				for(int i = 0; i < width; i++){
+					for(int j = 0; j < height; j++){
+						sum += mul[i][j];
+					}
+				}
+
+				converted[x][y] = sum;
+			}
+		}
+
+		return converted;
 	}
 
 	public int getHeight() {
@@ -52,6 +92,34 @@ public class Kernel {
 
 	public int getWidth() {
 		return width;
+	}
+
+
+	public static void main(String[] args) {
+		double[][] d = new double[3][3];
+		d[0][0] = 1;
+		d[0][2] = 1;
+		d[1][1] = 1;
+		d[2][2] = 1;
+		d[2][0] = 1;
+		Kernel k = new Kernel(d);
+		int[][] i = new int[7][7];
+		i[0][3] = 1;
+		i[1][3] = 1;
+		i[1][4] = 1;
+		i[2][3] = 1;
+		i[2][4] = 1;
+		i[2][5] = 1;
+		int[][] test = k.convolve(i);
+		for(int[] x : test){
+			for(int a : x){
+				System.out.print(a);
+				System.out.print("   ");
+
+			}
+			System.out.println();
+		}
+
 	}
 
 }

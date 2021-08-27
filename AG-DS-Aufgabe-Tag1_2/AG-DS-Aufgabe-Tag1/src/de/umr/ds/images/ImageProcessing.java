@@ -30,16 +30,6 @@ public class ImageProcessing {
 			}
 		}
 
-		 int color2 = listOrigin[0][0];
-		int r2 = (color2 >> 16) & 0xFF;
-		int g2 = (color2 >> 8) & 0xFF;
-		int b2 = color2 & 0xFF;
-		System.out.println(Integer.toBinaryString(r2));
-		System.out.println(Integer.toBinaryString(g2));
-		System.out.println(Integer.toBinaryString(b2));
-		System.out.println(" line ");
-
-
 		for(int x = 0; x < xMax; x++){
 			for(int y = 0; y < yMax; y++){
 				int color = listOrigin[x][y];
@@ -70,6 +60,12 @@ public class ImageProcessing {
 				grayImg.setRGB(x,y, img[x][y]);
 			}
 		}
+		try {
+			File outputfile = new File("saved.png");
+			ImageIO.write(grayImg, "png", outputfile);
+		} catch (IOException e) {
+			System.out.println(e.toString());
+		}
 		return grayImg;
 	}
 
@@ -98,8 +94,7 @@ public class ImageProcessing {
 		} catch (IOException e) {
 			System.out.println(e.toString());
 		}
-		convertToGrayScaleArray(img);
-
+		convertToBufferedImage(convertToGrayScaleArray(img));
 
 	}
 

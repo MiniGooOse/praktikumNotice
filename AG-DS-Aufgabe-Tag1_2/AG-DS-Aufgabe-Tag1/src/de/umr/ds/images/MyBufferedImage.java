@@ -54,15 +54,6 @@ class MyBufferedImage extends JFrame {
 
         public void paint(Graphics g) {
             super.paint(g);
-            Graphics2D g2d = (Graphics2D)g;
-            int rgb = -256;
-
-            /**
-            for(int i = 0; i < 33; ++i) {
-                for(int k = 0; k < 33; ++k) {
-                    this.img.setRGB(112 + i, 112 + k, rgb);
-                }
-            }*/
 
             final double rCoeff = 0.299;
             final double gCoeff = 0.587;
@@ -78,6 +69,8 @@ class MyBufferedImage extends JFrame {
                 }
             }
             BufferedImage grayImg = new BufferedImage(xMax, yMax, BufferedImage.TYPE_INT_RGB);
+
+
 
             for(int x = 0; x < xMax; x++){
                 for(int y = 0; y < yMax; y++){
