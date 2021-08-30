@@ -48,10 +48,6 @@ public class Kernel {
 
 
 
-		System.out.println(String.valueOf(width));
-		System.out.println(String.valueOf(newXSize));
-
-
 		for(int x = 0; x < newXSize; x++){
 			for(int y = 0; y < newYSize; y++){
 				//System.out.println(x + " "+ y);

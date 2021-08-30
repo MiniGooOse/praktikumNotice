@@ -62,7 +62,7 @@ public class ImageProcessing {
 		}
 		/**
 		try {
-			File outputfile = new File("C:\\Users\\xiao\\Desktop\\vbox_data\\kernel7.png");
+			File outputfile = new File("path");
 			ImageIO.write(grayImg, "png", outputfile);
 		} catch (IOException e) {
 			System.out.println(e.toString());
@@ -96,6 +96,7 @@ public class ImageProcessing {
 			System.out.println(e.toString());
 		}
 		//convertToBufferedImage(convertToGrayScaleArray(img));
+		/***
 		Kernels kernels = new Kernels();
 		Kernel k1 = kernels.GaussianBlur5x5();
 		Kernel k2 = kernels.BoxBlur3x3();
@@ -118,7 +119,7 @@ public class ImageProcessing {
 		int[][] result6 = k6.convolve(origin);
 		//convertToBufferedImage(result6);
 		int[][] result7 = k7.convolve(origin);
-		convertToBufferedImage(result7);
+		//convertToBufferedImage(result7);*/
 
 
 	}
