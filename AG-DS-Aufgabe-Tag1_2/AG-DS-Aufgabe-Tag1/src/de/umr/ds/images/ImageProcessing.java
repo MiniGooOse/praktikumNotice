@@ -88,7 +88,9 @@ public class ImageProcessing {
 		ImageProcessing i = new ImageProcessing();
 
 		BufferedImage img = null;
-		try {
+		/***
+
+		 try {
 			URL url = i.getClass().getResource("example.jpg");
 			File file = new File(url.getPath());
 			img = ImageIO.read(file);
@@ -96,7 +98,6 @@ public class ImageProcessing {
 			System.out.println(e.toString());
 		}
 		//convertToBufferedImage(convertToGrayScaleArray(img));
-		/***
 		Kernels kernels = new Kernels();
 		Kernel k1 = kernels.GaussianBlur5x5();
 		Kernel k2 = kernels.BoxBlur3x3();
