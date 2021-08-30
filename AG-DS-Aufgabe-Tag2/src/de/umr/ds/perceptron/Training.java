@@ -6,6 +6,8 @@ public class Training {
 
 	private static final double alpha = 0.05; // learning rate
 	private static final int epochs = 10; // number of epochs
+	private static double maxAccuracy = 0;
+	private static Perceptron best = null;
 
 	/**
 	 * A perceptron is trained on a dataset. After each epoch the perceptron's
@@ -54,7 +56,15 @@ public class Training {
 			p.setW(wCurrent);
 			p.setB(newB);
 			Evaluation e = new Evaluation();
-			System.out.println(e.accuracy(p,dataset));
+			double accuracy = e.accuracy(p,dataset);
+			System.out.println(accuracy);
+			if(accuracy > maxAccuracy){
+				maxAccuracy = accuracy;
+				Perceptron per = new Perceptron();
+				per.setB(newB);
+				per.setW(wCurrent);
+				best = per;
+			}
 			count++;
 			Collections.shuffle(dataset);
 		}
