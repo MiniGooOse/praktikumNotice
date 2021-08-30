@@ -1,6 +1,7 @@
 package de.umr.ds.perceptron;
 
 import java.util.Random;
+import java.util.function.Predicate;
 
 /**
  * A Perceptron holds weights and bias and can be applied to a data vector to
@@ -50,14 +51,46 @@ public class Perceptron {
     }
 
     public int predict(Vector v){
-        double sum = 0;
-        for(int i = 0; i < this.dim; i++){
-            sum += v.getDim(i) * this.w[i];
-        }
+        double sum = v.dot(new Vector(w));
+
         if (sum + this.b > 0){
             return 1;
         } else {
             return 0;
         }
+    }
+
+    public static void main(String[] args) {
+        Perceptron p = new Perceptron();
+        Dataset dataset = new Dataset(10);
+
+        double[] wCurrent = p.getW();
+        double[] wDelta = new double[2];
+        double[] wNext = new double[2];
+        double newB = p.getB();
+
+        for(DataPoint point : dataset){
+            int theo = p.predict(point);
+            int prak = point.getLabel();
+            for(int i = 0; i < 2; i++){
+                wDelta[i] = 0.05 * (theo - prak) * point.getDim(i);
+                System.out.println(wCurrent.toString());
+                System.out.print(theo);
+                System.out.print("    ");
+                System.out.print(prak);
+                System.out.print("    ");
+
+                System.out.println(wDelta[i]);
+                wNext[i] = wDelta[i] + wCurrent[i];
+                double deltaB = 0.05 * (prak - theo);
+                newB += deltaB;
+                System.out.println(deltaB);
+                System.out.println(wNext[i]);
+
+            }
+            newB += 0.05 * (theo - prak);
+            wCurrent = wNext;
+        }
+        System.out.println();
     }
 }

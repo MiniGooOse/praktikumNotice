@@ -24,7 +24,7 @@ public class Visualization extends JFrame {
 	// dimensions of the frame
 	private static final int width = 700;
 	private static final int height = 700;
-	private static final long delay = 500; // time delay after each epoch for visualization
+	private static final long delay = 5; // time delay after each epoch for visualization
 
 	private Dataset data; // dataset of 2D points
 	private Vector w; // weights of the perceptron
@@ -84,6 +84,12 @@ public class Visualization extends JFrame {
 			return (-w1 * x - b) / w2;
 		}
 
+		double f2(int x) {
+			double w1 = -1;
+			double w2 = 1;
+			return (-w1 * x - b) / w2;
+		}
+
 		@Override
 		public void paintComponent(Graphics gg) {
 
@@ -111,9 +117,14 @@ public class Visualization extends JFrame {
 			}
 
 			// plot learned threshold function (perceptron)
-			g.setStroke(new BasicStroke(4));
+			g.setStroke(new BasicStroke(1));
 			g.setColor(Color.blue);
-			g.draw(new Line2D.Double(0, f(0) * height, width, f(1) * height));
+			g.draw(new Line2D.Double(0, f(0) * height, width, f(1) * height) );
+			//g.draw(new Line2D.Double(1,1,500,500));
+			//g.draw(new Line2D.Double(0, f(0), width, f(width) ));
+			//System.out.println(String.valueOf(f(0)));
+			//System.out.println(String.valueOf(f(width)));
+
 
 			// transform back
 			g.translate(0, getHeight() - 1);

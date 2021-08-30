@@ -9,10 +9,15 @@ public class Evaluation {
 	 * @return accuracy
 	 */
 	public static double accuracy(Perceptron model, Dataset dataset) {
-		
-		// TODO
-		
-		return 0;
+		double total = dataset.size();
+		double correct = 0;
+		for (DataPoint p : dataset){
+			if(model.predict(p) == p.getLabel()){
+				correct += 1;
+			}
+		}
+
+		return correct/total;
 	}
 
 }
