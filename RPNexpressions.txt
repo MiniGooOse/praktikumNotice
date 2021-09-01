@@ -1,0 +1,15 @@
+UPN: 1 2 +
+Infix: 1 + 2
+Ergebnis: 3
+
+UPN: m c 2 ^ *
+Infix: m * c ^ 2
+Ergebnis: Abhängig von der Variablenbelegung
+
+UPN: 42 23 + 13 * 2 /
+Infix: ((42 + 24) * 13) / 2
+Ergebnis: 422.5
+
+UPN: -1 -2 - 1 2 + +
+Infix: (-1 - -2) + (1 + 2)
+Ergebnis: 4
